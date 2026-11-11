@@ -1,0 +1,32 @@
+# PR と main への push で、soul/ を ClawSouls の検査（形式の検査と SoulScan）にかける。
+# main の保護ルールは、このジョブ名 `ci` を必須のチェックにしている。
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # publish.yml と同じ版にそろえる（Dependabot は npx で使う CLI の版を上げないので、手で上げる）
+  CLAWSOULS_VERSION: "0.16.3"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: validate and SoulScan
+        run: npx --yes "clawsouls@${CLAWSOULS_VERSION}" validate --soulscan ./soul

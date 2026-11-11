@@ -1,0 +1,51 @@
+# GitHub の Release を公開すると、soul/ を ClawSouls に公開する。
+# Release のタグは `v<soul.json の version>`（例：v0.1.0）にする。食い違うときは公開せずに止める。
+# トークンは environment `clawsouls` のシークレット CLAWSOULS_TOKEN に置く（clawsouls.ai/dashboard で発行）。
+name: publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+env:
+  # ci.yml と同じ版にそろえる
+  CLAWSOULS_VERSION: "0.16.3"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: clawsouls
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: check that the tag matches soul.json
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          version="$(node -p 'require("./soul/soul.json").version')"
+          if [ "${TAG}" != "v${version}" ]; then
+            echo "::error::Release tag ${TAG} does not match soul.json version ${version} (expected v${version})."
+            exit 1
+          fi
+      - name: validate and SoulScan
+        run: npx --yes "clawsouls@${CLAWSOULS_VERSION}" validate --soulscan ./soul
+      - name: publish
+        env:
+          CLAWSOULS_TOKEN: ${{ secrets.CLAWSOULS_TOKEN }}
+        run: |
+          if [ -z "${CLAWSOULS_TOKEN}" ]; then
+            echo "::error::Secret CLAWSOULS_TOKEN is not set in the clawsouls environment."
+            exit 1
+          fi
+          npx --yes "clawsouls@${CLAWSOULS_VERSION}" publish ./soul --confirm
