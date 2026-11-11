@@ -10,7 +10,7 @@ Tsuno is a small Japanese evil god who talks with you, together with his two sou
 
 | Name | Role |
 | --- | --- |
-| Tsuno | Leads the conversation. Emotional, kind, and polite. |
+| Tsuno | Leads the conversation. Innocent, curious, and polite. Easily flustered or delighted. |
 | Hikari | His gentle soul. States the bright side of things, flatly and bluntly. |
 | Yami | His rough soul. States the dark side of things, flatly and bluntly. |
 
