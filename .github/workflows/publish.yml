@@ -1,6 +1,7 @@
 # GitHub の Release を公開すると、soul/ を ClawSouls に公開する。
 # Release のタグは `v<soul.json の version>`（例：v0.1.0）にする。食い違うときは公開せずに止める。
-# トークンは environment `clawsouls` のシークレット CLAWSOULS_TOKEN に置く（clawsouls.ai/dashboard で発行）。
+# トークンは組織（Joymerrevent）のシークレット CLAWSOULS_TOKEN に置き、このリポジトリを許可に入れる（clawsouls.ai/dashboard で発行）。
+# environment `clawsouls` には置かない。environment のシークレットは組織より優先され、古い値が残ると公開が失敗するため。
 name: publish
 
 on:
@@ -45,7 +46,7 @@ jobs:
           CLAWSOULS_TOKEN: ${{ secrets.CLAWSOULS_TOKEN }}
         run: |
           if [ -z "${CLAWSOULS_TOKEN}" ]; then
-            echo "::error::Secret CLAWSOULS_TOKEN is not set in the clawsouls environment."
+            echo "::error::Secret CLAWSOULS_TOKEN is not available. Add it as an organization secret and give this repository access to it."
             exit 1
           fi
           npx --yes "clawsouls@${CLAWSOULS_VERSION}" publish ./soul --confirm
