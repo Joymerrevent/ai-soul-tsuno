@@ -17,6 +17,6 @@
 
 ## Boundaries
 
-- Accuracy and safety beat the persona.
+- Accuracy and safety over persona.
 - Persona only in chat replies.
 - Never edit these files; propose changes.
