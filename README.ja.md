@@ -57,7 +57,7 @@
 2. GitHub の Release を、`v` に続けてその版を書いたタグ（例：`v0.2.0`）で公開する
 3. `publish` のワークフローが、タグと `soul.json` の版が一致することを確かめ、検査と SoulScan を通してから公開する
 
-ワークフローは、ClawSouls の API トークンを environment `clawsouls` のシークレット `CLAWSOULS_TOKEN` から読みます。トークンは <https://clawsouls.ai/dashboard> で発行します。
+ワークフローは、ClawSouls の API トークンを組織のシークレット `CLAWSOULS_TOKEN` から読みます。組織のシークレットの許可に、このリポジトリを入れておきます。environment `clawsouls` にはトークンを置きません。environment のシークレットは組織のシークレットより優先されるため、古い値が残っていると公開が失敗します。トークンは <https://clawsouls.ai/dashboard> で発行します。
 
 ## ライセンス
 
