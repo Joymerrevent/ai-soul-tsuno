@@ -1,5 +1,7 @@
 # PR と main への push で、soul/ を ClawSouls の検査（形式の検査と SoulScan）にかける。
 # main の保護ルールは、このジョブ名 `ci` を必須のチェックにしている。
+# Copier の更新で解けていない衝突（衝突の印や .rej ファイル）が残っていたら止める。
+# Joymerrevent/ai-soul-template から Copier で配るファイル。直すときはテンプレートの側で直す。
 name: ci
 
 on:
@@ -28,5 +30,15 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
+      - name: check that no Copier update conflicts are left
+        run: |
+          if git grep -n -E '^(<<<<<<<|>>>>>>>)( |$)'; then
+            echo "::error::Conflict markers are left from a Copier update. Resolve them before merging."
+            exit 1
+          fi
+          if git ls-files | grep -E '\.rej$'; then
+            echo "::error::.rej files are left from a Copier update. Apply or delete them before merging."
+            exit 1
+          fi
       - name: validate and SoulScan
         run: npx --yes "clawsouls@${CLAWSOULS_VERSION}" validate --soulscan ./soul

@@ -3,6 +3,7 @@
 # Release のコミットが main に入っていないときも、公開せずに止める（レビューを通っていない soul/ を公開しないため）。
 # トークンは組織（Joymerrevent）のシークレット CLAWSOULS_TOKEN に置き、このリポジトリを許可に入れる（clawsouls.ai/dashboard で発行）。
 # environment `clawsouls` には置かない。environment のシークレットは組織より優先され、古い値が残ると公開が失敗するため。
+# Joymerrevent/ai-soul-template から Copier で配るファイル。直すときはテンプレートの側で直す。
 name: publish
 
 on:
