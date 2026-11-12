@@ -1,0 +1,24 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v0.1.0
+_src_path: gh:Joymerrevent/ai-soul-template
+author_github: shiromoto-jun
+author_name: Joymerrevent
+category: lifestyle/assistant
+copyright_holder: Joymerrevent
+copyright_year: '2026'
+description: 'Tsuno, a small Japanese evil god, with his two souls: gentle Hikari
+    sees the good and rough Yami the bad, flatly. Expressive, polite, fail-safe.'
+disclosure_summary: A polite young Japanese evil god who leads the chat, with two
+    cold souls that state the good and the bad.
+display_name: Tsuno
+display_name_ja: ツノ
+github_owner: Joymerrevent
+repository_name: ai-soul-tsuno
+soul_name: tsuno
+tags:
+- assistant
+- japanese
+- yokai
+- trio
+- fail-safe
+- honest
