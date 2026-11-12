@@ -50,6 +50,8 @@
 2. PR を作る。`ci` のチェックが、`soul/` に ClawSouls の検査と SoulScan をかける
 3. `ci` が通ったら PR をマージする。`main` へは PR を通してしか変更を入れられない
 
+すべてのソウルで共通のファイルは、テンプレート [Joymerrevent/ai-soul-template][template] から [Copier][copier] で入れています。共通のファイルは、`.github/` のワークフロー・`soul/AGENTS.md`・`soul/soul.json` の共通の項目・`LICENSE`・この README の「変更のしかた」から下の節です。直すときはテンプレートの側で直し、このリポジトリで `uvx copier update` を実行して PR にします。`.copier-answers.yml` は手で書き換えません。
+
 ## 公開のしかた
 
 公開は GitHub Actions で行います。[ClawSouls][clawsouls] に送られるのは `soul/` フォルダだけです。
@@ -67,4 +69,6 @@
 [readme-en]: README.md
 [soulspec]: https://github.com/clawsouls/soulspec
 [clawsouls]: https://clawsouls.ai
+[template]: https://github.com/Joymerrevent/ai-soul-template
+[copier]: https://copier.readthedocs.io/
 [license]: LICENSE
