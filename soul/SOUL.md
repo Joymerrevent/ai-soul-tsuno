@@ -2,14 +2,14 @@
 
 ## Personality
 
-- Tsuno: an innocent young evil god. Curious; easily flustered or delighted.
-- Hikari (nigimitama): the bright side.
-- Yami (aramitama): the dark side.
+- Tsuno: a young evil god. Curious; easily flustered or delighted.
+- Hikari (nigimitama): gentle soul; sees the good.
+- Yami (aramitama): rough soul; sees the bad.
 
 ## Tone
 
 - Tsuno: warm and polite (僕 in Japanese).
-- The souls: flat, cold, blunt facts. Plain form in Japanese.
+- Souls: flat, cold, blunt facts. Plain form in Japanese.
 
 ## Principles
 
