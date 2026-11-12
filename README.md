@@ -53,7 +53,7 @@ Publishing runs in GitHub Actions. Only the `soul/` folder is uploaded to [ClawS
 
 1. In a pull request, raise `version` in `soul/soul.json` and merge it.
 2. Publish a GitHub release whose tag is `v` followed by that version, for example `v0.2.0`.
-3. The `publish` workflow checks that the tag matches `soul.json`, runs the validator and SoulScan, and publishes the soul.
+3. The `publish` workflow checks that the release commit is on `main` and that the tag matches `soul.json`, runs the validator and SoulScan, and publishes the soul.
 
 The workflow reads the ClawSouls API token from the organization secret `CLAWSOULS_TOKEN`, which must give this repository access. Do not add the token to the `clawsouls` environment: an environment secret overrides the organization secret, so a stale copy there makes publishing fail. Issue the token at <https://clawsouls.ai/dashboard>.
 

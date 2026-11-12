@@ -1,5 +1,6 @@
 # GitHub の Release を公開すると、soul/ を ClawSouls に公開する。
 # Release のタグは `v<soul.json の version>`（例：v0.1.0）にする。食い違うときは公開せずに止める。
+# Release のコミットが main に入っていないときも、公開せずに止める（レビューを通っていない soul/ を公開しないため）。
 # トークンは組織（Joymerrevent）のシークレット CLAWSOULS_TOKEN に置き、このリポジトリを許可に入れる（clawsouls.ai/dashboard で発行）。
 # environment `clawsouls` には置かない。environment のシークレットは組織より優先され、古い値が残ると公開が失敗するため。
 name: publish
@@ -26,7 +27,16 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          # main と比べるため、すべてのブランチの履歴を取る
+          fetch-depth: 0
           persist-credentials: false
+      - name: check that the release commit is on main
+        run: |
+          main="$(git rev-parse --verify origin/main)"
+          if ! git merge-base --is-ancestor HEAD "${main}"; then
+            echo "::error::Release commit $(git rev-parse --short HEAD) is not on main. Merge the change into main, then publish the release from a commit on main."
+            exit 1
+          fi
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
