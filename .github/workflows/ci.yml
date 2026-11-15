@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # publish.yml と同じ版にそろえる（Dependabot は npx で使う CLI の版を上げないので、手で上げる）
+  # Dependabot は npx で使う CLI の版を上げないので、手で上げる
   CLAWSOULS_VERSION: "0.16.3"
 
 jobs:
