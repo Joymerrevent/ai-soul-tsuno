@@ -40,7 +40,7 @@
 
 ## 使い方
 
-`soul/` の中のファイルを、使っている AI がペルソナのファイルを読む場所へコピーします。`SOUL.md` を読める AI なら、どれでも使えます。
+`soul/` の中のファイルを、使っている AI がペルソナのファイルを読む場所へコピーします。`SOUL.md` を読める AI なら、どれでも使えます。公開した版は [Releases][releases] から手に入ります。
 
 ## 変更のしかた
 
@@ -54,13 +54,10 @@
 
 ## 公開のしかた
 
-公開は GitHub Actions で行います。[ClawSouls][clawsouls] に送られるのは `soul/` フォルダだけです。
+ソウルは GitHub の Release だけで公開します。ClawSouls には公開しません。ClawSouls は、営利目的の利用を禁じるライセンスを受け付けないためです。
 
 1. PR で `soul/soul.json` の `version` を上げて、マージする
-2. GitHub の Release を、`v` に続けてその版を書いたタグ（例：`v0.2.0`）で公開する
-3. `publish` のワークフローが、Release のコミットが main に入っていることと、タグと `soul.json` の版が一致することを確かめ、検査と SoulScan を通してから公開する
-
-ワークフローは、ClawSouls の API トークンを組織のシークレット `CLAWSOULS_TOKEN` から読みます。組織のシークレットの許可に、このリポジトリを入れておきます。environment `clawsouls` にはトークンを置きません。environment のシークレットは組織のシークレットより優先されるため、古い値が残っていると公開が失敗します。トークンは <https://clawsouls.ai/dashboard> で発行します。
+2. main の最新のコミットに、`v` に続けてその版を書いたタグ（例：`v0.1.0`）を付けて、GitHub の Release を公開する
 
 ## ライセンス
 
@@ -68,7 +65,7 @@
 
 [readme-en]: README.md
 [soulspec]: https://github.com/clawsouls/soulspec
-[clawsouls]: https://clawsouls.ai
+[releases]: https://github.com/Joymerrevent/ai-soul-tsuno/releases
 [template]: https://github.com/Joymerrevent/ai-soul-template
 [copier]: https://copier.readthedocs.io/
 [license]: LICENSE

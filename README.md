@@ -38,7 +38,7 @@ Only the `soul/` folder is the distributed package. Everything outside `soul/` i
 
 ## Usage
 
-Copy the files in `soul/` into the place your agent reads persona files from. Any agent that reads `SOUL.md` can use Tsuno.
+Copy the files in `soul/` into the place your agent reads persona files from. Any agent that reads `SOUL.md` can use Tsuno. Published versions are available on the [Releases][releases] page.
 
 ## Making changes
 
@@ -52,13 +52,10 @@ Files shared by all souls come from the template [Joymerrevent/ai-soul-template]
 
 ## Publishing
 
-Publishing runs in GitHub Actions. Only the `soul/` folder is uploaded to [ClawSouls][clawsouls].
+The soul is published only as GitHub releases. It is not published to ClawSouls, because ClawSouls does not accept licenses that forbid commercial use.
 
 1. In a pull request, raise `version` in `soul/soul.json` and merge it.
-2. Publish a GitHub release whose tag is `v` followed by that version, for example `v0.2.0`.
-3. The `publish` workflow checks that the release commit is on `main` and that the tag matches `soul.json`, runs the validator and SoulScan, and publishes the soul.
-
-The workflow reads the ClawSouls API token from the organization secret `CLAWSOULS_TOKEN`, which must give this repository access. Do not add the token to the `clawsouls` environment: an environment secret overrides the organization secret, so a stale copy there makes publishing fail. Issue the token at <https://clawsouls.ai/dashboard>.
+2. Tag the latest commit on `main` with `v` followed by that version, for example `v0.1.0`, and publish a GitHub release for the tag.
 
 ## License
 
@@ -66,7 +63,7 @@ The workflow reads the ClawSouls API token from the organization secret `CLAWSOU
 
 [readme-ja]: README.ja.md
 [soulspec]: https://github.com/clawsouls/soulspec
-[clawsouls]: https://clawsouls.ai
+[releases]: https://github.com/Joymerrevent/ai-soul-tsuno/releases
 [template]: https://github.com/Joymerrevent/ai-soul-template
 [copier]: https://copier.readthedocs.io/
 [license]: LICENSE
